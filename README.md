@@ -1,6 +1,8 @@
 # Does the heart forget? Modulation of cardiac activity induced by inhibitory control over emotional memories.
 
-Legrand et al. - 2018 - bioRxiv, doi:
+Legrand, N., Etard, O., Vandevelde, A., Pierre, M., Viader, F., Clochon, P., Doidy, F., Peschanski, D., Eustache, F. & Gagnepain, P. (2018). Preprint version 1.0, doi: https://doi.org/10.1101/376954
+
+This repository contain data, scripts and Jupyter notebook accessibles through Binder detailling analysis from the preprint version of the paper. The currents scripts has not been peer-reviewed, so we do not recommand to use them on your own data for now. If you judge that some codes would benefit from specific clarifications or improvements do not hesitate to contact us (legrand@cyceron.fr).
 
 # Abstract
 
@@ -8,18 +10,15 @@ Legrand et al. - 2018 - bioRxiv, doi:
 
 # Data
 
-We provide here behavioral data relating to intrusions during the TNT task, recall and the emotional valence.
-
-*
-
+Behavioral data from Study 1 (n=28) and Study 2 (n=24) are provided in `data/Emotion.csv`, `data/Recall.csv` and `data/Intrusions.csv`. Preprocessed ECG are privided in `ECG*.txt` files.
 
 # Notebooks
 
-Analysis of behavioral and electrocardiographic data are summarize in two Jupyter Notebook (`Behavioral.ipynb` and `ECG.ipynb`).
+Figures and statistical models can be reproduced via two Jupyter Notebook (`Behavioral.ipynb` and `ECG.ipynb`).
 
 # Scripts
 
-The current scripts are made available for reviewing purpose, and could therefore be improved. `EEG.py` implement the preprocessing steps, `EEG_statistics.py` refers to the statistics and plotting part of the pipeline.
+`EEG.py` implement preprocessing, `EEG_statistics.py` implement statistics and plotting.
 
 ## EEG.py
 
@@ -41,6 +40,5 @@ Preprocesses are divided into 5 steps:
 
 * plottopo(): Plot topomap of the contrasted two conditions base on the selected cluster.
 
-* plot_ecg_corr() : Plot the correlation between the cardiac modulation (results provided in `bpm.txt`) and the decrease of frequency power.
+* plot_ecg_corr() : Plot the correlation between the averaged cardiac modulation (provided in `bpm.txt`) and the decrease of frequency power.
 
-# Aknowledgements
