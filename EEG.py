@@ -1,7 +1,7 @@
 """
 @author: Nicolas Legrand (legrand@cyceron.fr)
 
-Preprocess and frequency analysis
+Preprocess and time-frequency analysis
 
 """
 
@@ -36,26 +36,12 @@ mapping = {'E1'     : "eog", 'E8'     : "eog", 'E14'    : "eog",
            'E17'    : "misc",'Cz'     : "misc"}
 
 # Interpolation
-reconstruct = {'32CVI' : ['E48'],                 '31NLI' : ['E33', 'E125'],
-               '34LME' : ['E123'],                '35QSY' : ['E116'],
-               '36LSA' : [],                      '37BMA' : ['E108'],
-               '38MAX' : [],                      '39BDA' : [],
-               '40MMA' : ['E39', 'E57'],          '41BAL' : ['E32', 'E114'],
-               '42SPE' : ['E22'],                 '44SMU' : ['E114'],
-               '45MJA' : [],                      '46SQU' : [],
-               '47HMA' : ['E45'],                 '50JOC' : ['E46', 'E48', 'E77'],
-               '52PFA' : ['E64'],                 '53SMA' : ['E27'],
-               '55MNI' : [],                      '56BCL' : [],
-               '57NCO' : [],                      '58BAN' : ['E30'],
-               '59DIN' : [],                      '60CAN' : ['E115']}
+reconstruct = {'Suject_1' : ['E33', 'E125']}
 
-eog = {}
-eog['TNT'] = {'31NLI' : 'E25','32CVI' : 'E8', '34LME' : 'E14', '35QSY' : 'E25',
-              '36LSA' : 'E25', '37BMA' : 'E8', '38MAX' : 'E25', '39BDA' : 'E25',
-              '40MMA' : 'E25', '41BAL' : 'E21', '42SPE' : 'E25', '44SMU' : 'E8',
-              '45MJA' : 'E14', '46SQU' : 'E25', '47HMA' : 'E25', '50JOC' : 'E25',
-              '52PFA' : 'E8', '53SMA' : 'E21', '55MNI' : 'E25', '56BCL' : 'E25',
-              '57NCO' : 'E25', '58BAN' : 'E25', '59DIN' : 'E25', '60CAN' : 'E25'}
+# EOG channel
+eog 	    = {}
+eog['TNT']  = {'31NLI' : 'E25'}
+
 # %%
 def run_filter(subject, task, overwrite):
 
@@ -163,7 +149,7 @@ def run_autoreject(subject, task):
 
     ar              = autoreject.LocalAutoRejectCV(picks=picks,
                                                    thresh_func=thresh_func)
-    epochs_clean = ar.fit_transform(epochs)
+    epochs_clean    = ar.fit_transform(epochs)
 
     # Save epoch data
     out_epoch = wd_path + task + '/4_autoreject/' + subject + '-epo.fif'
@@ -173,7 +159,7 @@ def run_autoreject(subject, task):
 def run_ICA(subject, task):
 
     input_path = wd_path + task + '/4_autoreject/' + subject + '-epo.fif'
-    epochs = mne.read_epochs(input_path)
+    epochs     = mne.read_epochs(input_path)
 
     # ICA correction
     ica = ICA(n_components=0.95, method='fastica')
@@ -253,8 +239,8 @@ def run_erf(subject, task):
 ### LOOP ###
 ############
 for subject in Names:
-#    run_filter(subject, 'TNT', overwrite=True)
+    run_filter(subject, 'TNT', overwrite=True)
     run_epochs(subject, 'TNT')
-#    run_autoreject(subject, 'TNT')
-#    run_ICA(subject,'TNT')
-#    run_erf(subject,'TNT')
+    run_autoreject(subject, 'TNT')
+    run_ICA(subject,'TNT')
+    run_erf(subject,'TNT')
