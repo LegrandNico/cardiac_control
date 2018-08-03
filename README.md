@@ -10,7 +10,7 @@ This repository contain data, scripts and Jupyter notebook accessibles through B
 
 # Data
 
-Behavioral data from Study 1 (n=28) and Study 2 (n=24) are provided in `data/Emotion.csv`, `data/Recall.csv` and `data/Intrusions.csv`. Preprocessed ECG are privided in `ECG*.txt` files.
+Behavioral data from Study 1 (n=28) and Study 2 (n=24) are provided in `data/Emotion.csv`, `data/Recall.csv` and `data/Intrusions.csv`. Preprocessed ECG are provided in `ECG*.txt` files.
 
 # Notebooks
 

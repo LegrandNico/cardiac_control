@@ -40,7 +40,7 @@ reconstruct = {'Suject_1' : ['E33', 'E125']}
 
 # EOG channel
 eog 	    = {}
-eog['TNT']  = {'31NLI' : 'E25'}
+eog['TNT']  = {'Suject_1' : 'E25'}
 
 # %%
 def run_filter(subject, task, overwrite):
