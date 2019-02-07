@@ -1,12 +1,12 @@
 # Does the heart forget? Modulation of cardiac activity induced by inhibitory control over emotional memories.
 
-Legrand, N., Etard, O., Vandevelde, A., Pierre, M., Viader, F., Clochon, P., Doidy, F., Peschanski, D., Eustache, F. & Gagnepain, P. (2018). Preprint version 1.0, doi: https://doi.org/10.1101/376954
-
-This repository contains data, scripts and Jupyter notebook accessible through Binder detailing analysis from the preprint version of the paper. The currents scripts have not been peer-reviewed, so we do not recommend to use them on your own data for now. If you judge that some codes would benefit from specific clarifications or improvements do not hesitate to contact us (legrand@cyceron.fr).
+Legrand, N., Etard, O., Vandevelde, A., Pierre, M., Viader, F., Clochon, P., Doidy, F., Peschanski, D., Eustache, F. & Gagnepain, P. (2018). Preprint version 2.0, doi: https://doi.org/10.1101/376954
 
 # Abstract
 
 *Effort to suppress past experiences from conscious awareness can lead to forgetting. It remains largely unknown whether emotions, including their physiological causes, are also impacted by such memory suppression. In two studies, we measured in healthy participants the aftereffect of suppressing negative memories on cardiac response. Results of Study 1 revealed that an efficient control of memories was associated with a long-term inhibition of the cardiac deceleration normally induced by disgusting stimuli. Attempts to suppress sad memories, on the opposite, aggravated cardiac response, an effect that was largely related to the inability to forget this specific material. In Study 2, we found using electroencephalography that a prominent neural marker of inhibitory control, a suppression of the 5-9 Hz frequency band, was related to the subsequent inhibition of the cardiac response. These results demonstrate that suppressing memories also influence the cardiac system, opening new avenues for treating intrusive memories.*
+
+This repository contains data, scripts and Jupyter notebook accessible through Binder detailing analysis from the preprint version of the paper. The currents scripts have not been peer-reviewed, so we do not recommend to use them on your own data for now. If you judge that some codes would benefit from specific clarifications or improvements do not hesitate to contact us (legrand@cyceron.fr).
 
 # Data
 
