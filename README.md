@@ -1,6 +1,6 @@
 # Does the heart forget? Modulation of cardiac activity induced by inhibitory control over emotional memories.
 
-Legrand, N., Etard, O., Vandevelde, A., Pierre, M., Viader, F., Clochon, P., Doidy, F., Peschanski, D., Eustache, F. & Gagnepain, P. (2018). Preprint version 2.0, doi: https://doi.org/10.1101/376954
+Legrand, N., Etard, O., Vandevelde, A., Pierre, M., Viader, F., Clochon, P., Doidy, F., Peschanski, D., Eustache, F. & Gagnepain, P. (2018). Preprint version 3.0, doi: https://www.biorxiv.org/content/10.1101/376954v3
 
 # Abstract
 
