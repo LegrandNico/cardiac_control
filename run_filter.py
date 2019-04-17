@@ -5,9 +5,7 @@ import os
 
 root = 'D:/'
 
-data_path = root + 'EEG/'  # Setup path
-Names = os.listdir(data_path)  # Subjects ID
-wd_path = root + 'EEG_wd/Machine_learning/'  # Working directory
+Names = os.listdir(root + 'EEG/')  # Subjects ID
 
 # Parameter
 drop = ['E43', 'E49', 'E56', 'E63', 'E68', 'E73', 'E81',
@@ -37,7 +35,7 @@ def run_filter(subject):
 
     """
     # Load edf file
-    subject_path = data_path + subject + '/' + subject + fname['eeg']
+    subject_path = root + 'EEG/' + subject + '/' + subject + fname['eeg']
     raw = mne.io.read_raw_edf(subject_path, preload=True)
 
     # Rename channels
@@ -52,7 +50,7 @@ def run_filter(subject):
     raw.drop_channels(drop)
 
     # Save raw data
-    out_raw = wd_path + '/1_raw/' + subject + '-raw.fif'
+    out_raw = root + '/1_raw/' + subject + '-raw.fif'
     raw.save(out_raw, overwrite=True)
 
     # Filter
@@ -64,7 +62,7 @@ def run_filter(subject):
     raw.set_eeg_reference('average', projection=True)
 
     # Save data
-    out_rawfilter = wd_path + '/2_rawfilter/' + subject + '-raw.fif'
+    out_rawfilter = root + '/2_rawfilter/' + subject + '-raw.fif'
     raw.save(out_rawfilter, overwrite=True)
 
 
