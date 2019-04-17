@@ -74,7 +74,7 @@ them from their memory.
 
 
 # Cardiac response toward stimuli before and after the TNT procedure (Study 2)
-![Figure 4: Cardiac response toward stimuli before and after the TNT procedure (Study 2)](Figures/Figure3.png)
+![Figure 4: Cardiac response toward stimuli before and after the TNT procedure (Study 2)](Figures/Figure4.png)
 > **A.** Cardiac response following the initial presentation of the images before the TNT task. The curves represent the change in the number of heartbeat per minutes (BPM) taking the onset of image presentation as a zeros starting-point. In the lower panel, the boxplots represent the distribution of response times for the valence rating. **B.** Cardiac response after the TNT task for Disgust (top panel) and Neutral (bottom panel) images. For each emotion, we represent Think, No-Think and Baseline items separately (green, red and blue lines respectively). We observed a significantly reduced deceleration of the heart rate for Disgusting No-Think items compared to Baseline. For both panel A and B, the black line shows the significant difference between neutral and disgust evoked response, while the red line indicates the remaining significance after FDR correction. **C.** The inhibition of cardiac response following memory was still observed even after controlling for the stronger deceleration observed for neutral items in the post-TNT evaluation.
 
 # Appendix 1: Pre and post-TNT emotional evaluation
