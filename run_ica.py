@@ -11,14 +11,14 @@ Names = os.listdir(root + 'EEG/')  # Subjects ID
 
 
 def run_ICA(subject):
-    """Filter raw data.
+    """Correct epochs for EOG artifacts.
 
     Parameters
     ----------
     *subject: string
         The participant reference
 
-    Save the resulting *-raw.fif file in the '2_rawfilter' directory.
+    Save the resulting *-epo.fif file in the '/4_ICA' directory.
 
     """
     input_path = root + '/3_epochs/' + subject + 'clean-epo.fif'
@@ -32,9 +32,9 @@ def run_ICA(subject):
 
     ica.fit(epochs, picks=picks, decim=10)
 
-#    ica.plot_components()
-#    ica.plot_scores(scores)
-#    eog_inds = ica.exclude
+# Uncomment to manually select ICA components
+# ica.plot_components()
+# eog_inds = ica.exclude
 
     # List of bad component to reject
     eog_inds = []
