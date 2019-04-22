@@ -6,8 +6,9 @@ from mne.preprocessing import ICA
 import numpy as np
 import os
 
-root = 'D:/'
-Names = os.listdir(root + 'EEG/')  # Subjects ID
+root = 'E:/EEG_wd/Machine_learning/TNT/'
+Names = os.listdir(root + 'All_frequencies_multitaper')  # Subjects ID
+Names       = sorted(list(set([subject[:5] for subject in Names])))
 
 
 def run_ICA(subject):
@@ -21,10 +22,10 @@ def run_ICA(subject):
     Save the resulting *-epo.fif file in the '/4_ICA' directory.
 
     """
-    input_path = root + '/3_epochs/' + subject + 'clean-epo.fif'
+    input_path = root + '3_epochs/' + subject + 'clean-epo.fif'
     epochs = mne.read_epochs(input_path)
 
-    # ICA correction
+    # Fit ICA
     ica = ICA(n_components=0.95, method='fastica')
 
     picks = mne.pick_types(epochs.info, meg=False, eeg=True, eog=False,
@@ -32,9 +33,10 @@ def run_ICA(subject):
 
     ica.fit(epochs, picks=picks, decim=10)
 
-# Uncomment to manually select ICA components
-# ica.plot_components()
-# eog_inds = ica.exclude
+    # Uncomment to manually select ICA components
+    # ica.plot_components()
+    # eog_inds = ica.exclude
+    # ica.plot_components(picks=range(25), inst=epochs)
 
     # List of bad component to reject
     eog_inds = []
