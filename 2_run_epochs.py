@@ -75,7 +75,7 @@ def run_epochs(subject):
 
     epochs.info['projs'] = list()  # remove proj
 
-    ransac = Ransac(verbose='progressbar', n_jobs=10)
+    ransac = Ransac(verbose='progressbar', n_jobs=1)
     epochs_clean = ransac.fit_transform(epochs)
 
     evoked = epochs.average().crop(-0.2, 1.0)\
@@ -106,18 +106,17 @@ def run_epochs(subject):
 
     # Heatmap
     ch_names = [epochs.ch_names[ii] for ii in ransac.picks][7::10]
-    fig, ax = plt.subplots(1, 1, figsize=(6, 12))
-    ax.imshow(ransac.bad_log, cmap='Reds',
+    fig, ax = plt.subplots(1, 1, figsize=(12, 6))
+    ax.imshow(ransac.bad_log.T, cmap='Reds',
               interpolation='nearest')
     ax.grid(False)
-    ax.set_xlabel('Sensors')
-    ax.set_ylabel('Trials')
-    plt.setp(ax, xticks=range(7, len(ransac.picks), 10),
-             xticklabels=ch_names)
-    plt.setp(ax.get_yticklabels(), rotation=0)
-    plt.setp(ax.get_xticklabels(), rotation=90)
+    ax.set_xlabel('Trials', size=15)
+    ax.set_ylabel('Sensors', size=15)
+    plt.setp(ax, yticks=range(7, len(ransac.picks), 10),
+             yticklabels=ch_names)
     ax.tick_params(axis=u'both', which=u'both', length=0)
     fig.tight_layout(rect=[None, None, None, 1.1])
+    ax.set_title('Bad sensors', size=25)
     plt.savefig(root + '/3_epochs/' + subject + '-heatmap.png')
     plt.clf()
     plt.close()
