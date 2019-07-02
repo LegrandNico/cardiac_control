@@ -6,8 +6,10 @@ import mne
 import os
 import pandas as pd
 
-root = 'D:/'
-Names = os.listdir(root + 'EEG/')
+data_path = 'E:/ENGRAMME/GROUPE_2/EEG/'
+root = 'E:/EEG_wd/Machine_learning/TNT/'
+Names       = os.listdir('E:/EEG_wd/Machine_learning/TNT/All_frequencies_multitaper/')
+Names       = sorted(list(set([subject[:5] for subject in Names])))
 fname = {'eeg': '_t.fil.edf', 'eprime': '_t.txt'}
 behav_var = ['Cond1', 'Cond2', 'Image.OnsetTime',
              'Black.RESP', 'ImageCentre', 'ImageFond']
@@ -32,7 +34,7 @@ def run_epochs(subject):
     raw = mne.io.read_raw_fif(input_path)
 
     # Load e-prime df
-    eprime_df = root + 'EEG/' + subject + fname['eprime']
+    eprime_df = data_path + subject + '/' + subject + fname['eprime']
     eprime = pd.read_csv(eprime_df, skiprows=1, sep='\t')
     eprime = eprime[behav_var]
 
@@ -78,11 +80,11 @@ def run_epochs(subject):
     ransac = Ransac(verbose='progressbar', n_jobs=1)
     epochs_clean = ransac.fit_transform(epochs)
 
-    evoked = epochs.average().crop(-0.2, 1.0)\
+    evoked = epochs.average().crop(-0.2, 3.0)\
                    .apply_baseline(baseline=(None, 0))
 
     evoked_clean = epochs_clean.average()\
-        .crop(-0.2, 1.0).apply_baseline(baseline=(None, 0))
+        .crop(-0.2, 3.0).apply_baseline(baseline=(None, 0))
 
     evoked.info['bads'] = ransac.bad_chs_
     evoked_clean.info['bads'] = ransac.bad_chs_
@@ -94,7 +96,7 @@ def run_epochs(subject):
         ax.tick_params(axis='x', which='both', bottom='off', top='off')
         ax.tick_params(axis='y', which='both', left='off', right='off')
 
-    ylim = dict(grad=(-170, 200))
+    ylim = dict(grad=(-200, 200))
     evoked.plot(exclude=[], axes=axes[0], ylim=ylim, show=False)
     axes[0].set_title('Before RANSAC')
     evoked_clean.plot(exclude=[], axes=axes[1], ylim=ylim)

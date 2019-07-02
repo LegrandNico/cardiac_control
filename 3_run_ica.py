@@ -26,17 +26,17 @@ def run_ICA(subject):
     epochs = mne.read_epochs(input_path)
 
     # Fit ICA
+    reject = dict(eeg=40e-6, eog=250e-6)
     ica = ICA(n_components=0.95, method='fastica')
 
     picks = mne.pick_types(epochs.info, meg=False, eeg=True, eog=False,
                            stim=False, exclude='bads')
 
-    ica.fit(epochs, picks=picks, decim=10)
+    ica.fit(epochs, picks=picks, decim=10, reject=reject)
 
     # Uncomment to manually select ICA components
-    # ica.plot_components()
+    # ica.plot_components(picks=range(30), inst=epochs)
     # eog_inds = ica.exclude
-    # ica.plot_components(picks=range(25), inst=epochs)
 
     # List of bad component to reject
     eog_inds = []
@@ -55,10 +55,11 @@ def run_ICA(subject):
 #        for i in inds:
 #            if not i in eog_inds:
 #                eog_inds.append(i)
-    plt.title('Rejected: ' + str(eog_inds))
     plt.savefig(root + '/4_ICA/' + subject + '-scores.png')
     plt.clf()
     plt.close()
+
+    ica.exclude = eog_inds
 
     # Plot components
     ica_plot = ica.plot_components(show=False)
@@ -69,11 +70,10 @@ def run_ICA(subject):
         plt.close()
 
     # Apply ICA
-    ica.exclude = eog_inds
     ica.apply(epochs)
 
     # Save epochs
-    epochs.save(root + '/4_ICA/' + subject + '-epo.fif')
+    epochs.save(root + '/4_ICA/' + subject + '-epo.fif', overwrite=True)
 
 
 # Loop across subjects

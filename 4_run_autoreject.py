@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 import mne
 import os
 
-root = 'D:/'
-Names = os.listdir(root + 'EEG/')  # Subjects ID
+root = 'E:/EEG_wd/Machine_learning/TNT/'
+Names = os.listdir(root + 'All_frequencies_multitaper')  # Subjects ID
+Names       = sorted(list(set([subject[:5] for subject in Names])))
 
 
 def run_autoreject(subject):
@@ -38,7 +39,7 @@ def run_autoreject(subject):
 
     # Autoreject
     ar = AutoReject(random_state=42,
-                    n_jobs=1)
+                    n_jobs=4)
 
     ar.fit_transform(epochs)
     epochs_clean = ar.transform(epochs)
@@ -59,12 +60,12 @@ def run_autoreject(subject):
     axes[1].set_title('After autoreject')
     plt.tight_layout()
     plt.savefig(root + '/5_autoreject/' +
-                subject + '-autoreject.svg')
+                subject + '-autoreject.png')
     plt.close()
 
     # Plot heatmap
     ar.get_reject_log(epochs).plot()
-    plt.savefig(root + '/5_autoreject/' + subject + '-heatmap.svg')
+    plt.savefig(root + '/5_autoreject/' + subject + '-heatmap.png')
     plt.close()
 
     # Save epoch data
