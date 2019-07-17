@@ -114,6 +114,9 @@ def extract_frequencies(subject, freqs, decim):
     np.save(path + 'TNT/All_frequencies_multitaper/'
             + subject + '.npy', this_tfr._data)
 
+    tnt_df.to_csv(path + 'TNT/All_frequencies_multitaper/'
+                  + subject + '.txt')
+
 
 for subject in Names:
     extract_frequencies(subject, freqs=np.arange(3, 30, 1), decim=20)
